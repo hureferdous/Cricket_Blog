@@ -1,4 +1,8 @@
-<!doctype html>
+<?php include 'config/config.php' ?>
+<?php include 'libraries/Database.php' ?>
+
+<?php include 'helpers/format_helper.php'?>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -17,7 +21,7 @@
         <div class="container">
            <nav class="nav">
             <a class="nav-link active" href="index.php">Cricket Blog</a>
-            <a class="nav-link" href="#">Posts</a>
+            <a class="nav-link" href="posts.php">Posts</a>
             <a class="nav-link" href="#">All Categories</a>
             <a class="nav-link" href="#">Login</a>
             <a class="nav-link" href="#">Contact</a>
