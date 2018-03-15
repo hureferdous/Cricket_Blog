@@ -1,10 +1,7 @@
 <?php include 'includes/header.php'?>
 <?php 
     //DB Objects
-   $db = new Database();
-
-   // check url for category
-   if(isset($_GET['category'])){
+   $db = new Database();])){
     $category= $_GET['category'];
     //Create Query for posts
    $query = "SELECT * FROM posts  WHERE category = ".$category;
