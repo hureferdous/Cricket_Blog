@@ -53,7 +53,7 @@ class Database{
 
              //Validate Insert
              if($insert_row) {
-              header("Location: index.php?msg=".urldecode('The Record is Added'));
+              header("Location: index.php?msg=".urlencode('The Record is Added'));
               exit();
              }
              else{
@@ -71,7 +71,7 @@ class Database{
 
              //Validate Insert
              if($update_row) {
-              header("Location: index.php?msg=".urldecode('The Record is Updated'));
+              header("Location: index.php?msg=".urlencode('The Record is Updated'));
               exit();
              }
              else{
@@ -88,7 +88,7 @@ class Database{
 
              //Validate Insert
              if($delete_row) {
-              header("Location: index.php?msg=".urldecode('The Record is Deleted'));
+              header("Location: index.php?msg=".urlencode('The Record is Deleted'));
               exit();
              }
              else{

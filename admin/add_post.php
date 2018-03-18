@@ -1,9 +1,31 @@
 <?php include 'includes/header.php' ?>
 <?php 
+        //DB Objects
+         $db = new Database();
 
-  //DB Objects
-   $db = new Database();
+      if(isset($_POST['submit'])){
+       //assing vars
+           $title = mysqli_real_escape_string($db->link, $_POST['title']);
+           $body = mysqli_real_escape_string($db->link, $_POST['body']);
+           $category = mysqli_real_escape_string($db->link, $_POST['category']);
+           $author = mysqli_real_escape_string($db->link, $_POST['author']);
+           $tags = mysqli_real_escape_string($db->link, $_POST['tags']);
+            //simple validation  
+            if($title == '' || $body == '' || $category == '' || $author == '') {
+              $error = 'Please fill out requried field' ;
 
+            }   else {
+                    $query = "INSERT INTO posts
+                    (title, body, category, author, tags)
+                    VALUES('$title', '$body' , $category , '$author', '$tags')" ;
+
+                    $insert_row = $db->insert($query);
+            }
+}
+?>
+<?php 
+
+  
    //Create Query for categories
    $query = "SELECT * FROM categories";
 
@@ -32,7 +54,7 @@
                             { $selected = '';  }
                         
                   ?>
-                 <option <?php echo $selected;?>><?php echo $row['name'];?></option>
+                 <option <?php echo $selected;?>value="<?php echo $row['id'];?>" ><?php echo $row['name'];?></option>
        <?php endwhile; ?>
     </select>
   </div>

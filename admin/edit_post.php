@@ -51,7 +51,7 @@
   </div>
   <div class="form-group">
     <label>Tags</label>
-    <input name="tags" type="text" class="form-control" placeholder="Enter Tags" value="<?php echo $post['tag'];?>" >  
+    <input name="tags" type="text" class="form-control" placeholder="Enter Tags" value="<?php echo $post['tags'];?>" >  
   </div>
   <div>
   <input name="submit" type="submit" class="btn btn-primary" value="Submit">
