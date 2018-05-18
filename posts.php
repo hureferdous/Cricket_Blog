@@ -1,20 +1,20 @@
 <?php include 'includes/header.php'?>
 <?php 
     //DB Objects
-   $db = new Database();])){
-    $category= $_GET['category'];
-    //Create Query for posts
-   $query = "SELECT * FROM posts  WHERE category = ".$category;
+   $db = new Database();
 
-   //run query
-   $posts = $db->select($query);
-   }
-
+    // Check URL for category
+    if(isset($_GET['category'])){
+        $category = $_GET['category'];
+         //Create Query 
+        $query = "SELECT * FROM posts WHERE category = ".$category;
+       //run query
+        $posts = $db->select($query);
+    }
     else{
-      //Create Query for posts
+       //Create Query 
    $query = "SELECT * FROM posts ";
-
-   //run query
+       //run query
    $posts = $db->select($query);
     }
 
@@ -43,5 +43,3 @@
        
                 
 <?php include 'includes/footer.php' ?>        
-
-       

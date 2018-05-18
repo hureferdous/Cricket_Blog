@@ -1,25 +1,45 @@
 <?php include 'includes/header.php' ?>
 <?php 
      $id = $_GET['id'];
-
 //DB Objects
    $db = new Database();
-
    //Create Query for posts
    $query = "SELECT * FROM posts WHERE id = ".$id ;
-
    //run query
    $post = $db->select($query)->fetch_assoc();
-
    //Create Query for categories
    $query = "SELECT * FROM categories";
-
    //run query
    $categories = $db->select($query);
 ?>
+<?php
+     if(isset($_POST['submit'])){
+       //assing vars
+           $title = mysqli_real_escape_string($db->link, $_POST['title']);
+           $body = mysqli_real_escape_string($db->link, $_POST['body']);
+           $category = mysqli_real_escape_string($db->link, $_POST['category']);
+           $author = mysqli_real_escape_string($db->link, $_POST['author']);
+           $tags = mysqli_real_escape_string($db->link, $_POST['tags']);
+            //simple validation  
+            if($title == '' || $body == '' || $category == '' || $author == '') {
+              $error = 'Please fill out requried field' ;
+
+            }   else {
+                    $query = "UPDATE posts SET
+                              title = '$title',
+                              body = '$body',
+                              category = '$category',
+                              author = '$author',
+                              tags = '$tags',   
+                              WHERE id =".$id ;
+
+                    $update_row = $db->update($query);
+            }
+       }     
+?>
 
 
-<form role="form" method="post" action="edit_post.php">
+<form role="form" method="post" action="edit_post.php?id=<?php echo $id;?>">
   <div class="form-group">
     <label>Post Title</label>
     <input name="title" type="text" class="form-control" placeholder="Enter Title" value="<?php echo $post['title'];?>" >  
@@ -41,7 +61,7 @@
                             { $selected = '';  }
                         
                   ?>
-                 <option <?php echo $selected;?>><?php echo $row['name'];?></option>
+                 <option value="<?php echo $row['id']; ?>" <?php echo $selected;?>><?php echo $row['name'];?></option>
        <?php endwhile; ?>
     </select>
   </div>

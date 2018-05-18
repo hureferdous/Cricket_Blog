@@ -3,13 +3,15 @@
    //create database object
    $db = new Database;
    //create qurey
-   $query = "SELECT posts.* , categories.name FROM posts INNER JOIN categories ON 
-             posts.category = categories.id ";
+   $query = "SELECT posts.* , categories.name FROM posts INNER JOIN categories 
+   ON posts.category = categories.id 
+             ORDER BY posts.title DESC";
    //run query
    $posts = $db->select($query);
 
    //Create Query for categories
-   $query = "SELECT * FROM categories";
+   $query = "SELECT * FROM categories
+             ORDER BY name DESC ";
 
    //run query
    $categories = $db->select($query);
@@ -20,10 +22,11 @@
         <table class="table table-striped">
   <thead>
     <tr>
-      <th >Post Id </th>
-      <th >Post Title</th>
-      <th >Author</th>
-      <th >Date</th>
+      <th>Post Id </th>
+      <th>Post Title</th>
+      <th>Category</th>
+      <th>Author</th>
+      <th>Date</th>
     </tr>
   </thead>
   <tbody>
